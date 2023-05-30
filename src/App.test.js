@@ -14,3 +14,9 @@ test("turns button blue on click", () => {
   fireEvent.click(buttonElement);
   expect(buttonElement).toHaveStyle({ backgroundColor: "blue" });
 });
+
+test("tests initial status of checkbox in document", () => {
+  render(<App />);
+  const checkboxElement = screen.getByRole("checkbox");
+  expect(checkboxElement).not.toBeChecked();
+});
