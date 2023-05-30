@@ -1,8 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, fireEvent } from "@testing-library/react";
+//fireEvent is used to work with events
+import App from "./App";
 
-test('renders learn react link', () => {
+test("render a button with red background", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const buttonElement = screen.getByRole("button", { name: "Change to blue" });
+  expect(buttonElement).toHaveStyle({ backgroundColor: "red" });
+});
+
+test("turns button blue on click", () => {
+  render(<App />);
+  const buttonElement = screen.getByRole("button", { name: "Change to blue" });
+  fireEvent.click(buttonElement);
+  expect(buttonElement).toHaveStyle({ backgroundColor: "blue" });
 });
