@@ -3,19 +3,14 @@ import { useState, useRef, useEffect } from "react";
 function App() {
   const [currentColor, setCurrentColor] = useState("red");
   const [isChecked, setIsChecked] = useState(false);
-  const myRef = useRef();
   const newButtonColor = currentColor === "red" ? "blue" : "red";
-  useEffect(() => {
-    myRef.current.disabled = isChecked;
 
-    console.log("render");
-  });
   return (
     <div style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
       <button
-        style={{ backgroundColor: currentColor }}
+        style={{ backgroundColor: isChecked ? "gray" : currentColor }}
         onClick={() => setCurrentColor(newButtonColor)}
-        ref={myRef}
+        disabled={isChecked}
       >
         Change to {newButtonColor}
       </button>
