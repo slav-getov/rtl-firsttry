@@ -20,3 +20,20 @@ test("tests initial status of checkbox in document", () => {
   const checkboxElement = screen.getByRole("checkbox");
   expect(checkboxElement).not.toBeChecked();
 });
+
+test("button is disabled on checkbox click", () => {
+  render(<App />);
+  const buttonElement = screen.getByRole("button");
+  const checkBoxElement = screen.getByRole("checkbox");
+  fireEvent.click(checkBoxElement);
+  expect(buttonElement).toBeDisabled();
+});
+
+test("expect button to be enabled on checkbox second click", () => {
+  render(<App />);
+  const buttonElement = screen.getByRole("button");
+  const checkBoxElement = screen.getByRole("checkbox");
+  fireEvent.click(checkBoxElement);
+  fireEvent.click(checkBoxElement);
+  expect(buttonElement).not.toBeDisabled();
+});
