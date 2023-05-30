@@ -37,3 +37,11 @@ test("expect button to be enabled on checkbox second click", () => {
   fireEvent.click(checkBoxElement);
   expect(buttonElement).not.toBeDisabled();
 });
+
+test("expect button to be grayed out when disabled via checkbox click", () => {
+  render(<App />);
+  const buttonElement = screen.getByRole("button");
+  const checkBoxElement = screen.getByRole("checkbox");
+  fireEvent.click(checkBoxElement);
+  expect(buttonElement).toHaveStyle({ backgroundColor: "gray" });
+});
