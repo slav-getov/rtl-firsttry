@@ -1,5 +1,11 @@
 import "./App.css";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+
+export function camelCaseToSpace(colorName) {
+  const reg = /\B([A-Z])\B/g;
+
+  return colorName.replace(reg, " $1");
+}
 function App() {
   const [currentColor, setCurrentColor] = useState("red");
   const [isChecked, setIsChecked] = useState(false);
@@ -14,7 +20,7 @@ function App() {
       >
         Change to {newButtonColor}
       </button>
-      {console.log(isChecked)}
+      {console.log(camelCaseToSpace("help"))}
       <input
         type="checkbox"
         onChange={() => {
@@ -25,5 +31,6 @@ function App() {
     </div>
   );
 }
-
+//mediumvioletred
+//midnightblue
 export default App;

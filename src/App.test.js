@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 //fireEvent is used to work with events
 import App from "./App";
-
+import { camelCaseToSpace } from "./App";
 test("render a button with red background", () => {
   render(<App />);
   const buttonElement = screen.getByRole("button", { name: "Change to blue" });
@@ -44,4 +44,16 @@ test("expect button to be grayed out when disabled via checkbox click", () => {
   const checkBoxElement = screen.getByRole("checkbox");
   fireEvent.click(checkBoxElement);
   expect(buttonElement).toHaveStyle({ backgroundColor: "gray" });
+});
+
+describe("space before camel case letters", () => {
+  test("Works for no inner capital letters", () => {
+    expect(camelCaseToSpace("red")).toBe("red");
+  });
+  test("Works for one inner capital letter", () => {
+    expect(camelCaseToSpace("MidnightBlue")).toBe("Midnight Blue");
+  });
+  test("Works for multiple inner capital letters", () => {
+    expect(camelCaseToSpace("MediumVioletRed")).toBe("Medium Violet Red");
+  });
 });
